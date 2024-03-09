@@ -1,6 +1,6 @@
 import { SexType, fakerFR as faker } from '@faker-js/faker'
 
-interface User {
+export interface User {
     _id: string
     avatar: string
     birthday: Date
@@ -56,4 +56,9 @@ export async function createRandomUser(): Promise<User> {
 export async function checkUserMails(user: User): Promise<any[]> {
     const [login, domain] = user.email.split('@')
     return await checkMails(login, domain)
+}
+
+export async function readUserMail(user: User, messageId: number): Promise<any[]> {
+    const [login, domain] = user.email.split('@')
+    return await apiRequest(`?action=readMessage&login=${login}&domain=${domain}&id=${messageId}`)
 }
