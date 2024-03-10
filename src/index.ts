@@ -1,4 +1,6 @@
-import { User, checkMails, checkUserMails, createRandomUser, readUserMail } from './utils'
+import { checkMails, readUserMail } from './api-utils'
+import { User } from './user'
+import { createRandomUser } from './utils'
 
 const main = async () => {
     const user = await createRandomUser()
@@ -7,10 +9,7 @@ const main = async () => {
 
     const mails = await checkMails('test', '1secmail.org')
     console.log(mails)
-    console.log({
-        user,
-        id: mails[0].id
-    })
+    
     const mailContents = await readUserMail({ email: 'test@1secmail.org' } as User, mails[0].id)
     console.info(mailContents)
 }
