@@ -1,15 +1,14 @@
 import { fakerFR as faker } from '@faker-js/faker'
-import { listAvailableProviders } from './api-utils'
-import type { User } from '../user'
+import type { IUser } from '../user'
 
-export async function createRandomUser(): Promise<User> {
+export function createRandomUser(availableProvidersList?: string[]): IUser {
     const sex = faker.person.sexType()
     const firstName = faker.person.firstName(sex)
     const lastName = faker.person.lastName()
     const email = faker.internet.email({
         firstName,
         lastName,
-        provider: faker.helpers.arrayElement(await listAvailableProviders())
+        provider: availableProvidersList ? faker.helpers.arrayElement(availableProvidersList) : undefined
     })
 
     return {

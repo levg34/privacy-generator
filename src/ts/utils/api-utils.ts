@@ -1,4 +1,4 @@
-import type { User } from '../user'
+import type { IUser } from '../user'
 
 export interface MailData {
     id: number
@@ -46,12 +46,12 @@ export async function listAvailableProviders() {
     return availableProvidersList
 }
 
-export async function checkUserMails(user: User): Promise<any[]> {
+export async function checkUserMails(user: Partial<IUser> & Pick<IUser, 'email'>): Promise<MailListData[]> {
     const [login, domain] = user.email.split('@')
     return await checkMails(login, domain)
 }
 
-export async function readUserMail(user: User, messageId: number): Promise<any[]> {
+export async function readUserMail(user: IUser, messageId: number): Promise<MailData> {
     const [login, domain] = user.email.split('@')
     return await apiRequest(`?action=readMessage&login=${login}&domain=${domain}&id=${messageId}`)
 }
