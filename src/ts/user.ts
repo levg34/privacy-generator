@@ -1,5 +1,11 @@
 import type { SexType } from '@faker-js/faker'
-import { listAvailableProviders, type MailData, type MailListData } from './utils/api-utils'
+import {
+    checkUserMails,
+    listAvailableProviders,
+    readUserMail,
+    type MailData,
+    type MailListData
+} from './utils/api-utils'
 import { createRandomUser } from './utils/faker-utils'
 
 export interface IUser {
@@ -14,7 +20,7 @@ export interface IUser {
 
 export interface IUserFunctions {
     checkMails(): Promise<MailListData[]>
-    readMail(mailId: number): MailData
+    readMail(mailId: number): Promise<MailData>
 }
 
 export class User implements IUser, IUserFunctions {
@@ -36,12 +42,12 @@ export class User implements IUser, IUserFunctions {
         this.sex = userData.sex
     }
 
-    checkMails(): Promise<MailListData[]> {
-        throw new Error('Method not implemented.')
+    async checkMails(): Promise<MailListData[]> {
+        return await checkUserMails(this)
     }
 
-    readMail(mailId: number): MailData {
-        throw new Error('Method not implemented.')
+    async readMail(mailId: number): Promise<MailData> {
+        return await readUserMail(this, mailId)
     }
 }
 
