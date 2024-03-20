@@ -1,5 +1,5 @@
 import { fakerFR as faker } from '@faker-js/faker'
-import type { IUser } from '../user'
+import type { IAddress, IUser } from '../user'
 
 export function createRandomUser(availableProvidersList?: string[]): IUser {
     const sex = faker.person.sexType()
@@ -10,6 +10,13 @@ export function createRandomUser(availableProvidersList?: string[]): IUser {
         lastName,
         provider: availableProvidersList ? faker.helpers.arrayElement(availableProvidersList) : undefined
     })
+    const address: IAddress = {
+        street: faker.location.street(),
+        zipCode: faker.location.zipCode(),
+        city: faker.location.city(),
+        country: faker.location.country(),
+        number: faker.number.int({ min: 1, max: 150 })
+    }
 
     return {
         _id: faker.string.uuid(),
@@ -18,6 +25,7 @@ export function createRandomUser(availableProvidersList?: string[]): IUser {
         email,
         firstName,
         lastName,
-        sex
+        sex,
+        address
     }
 }

@@ -8,6 +8,14 @@ import {
 } from './utils/api-utils'
 import { createRandomUser } from './utils/faker-utils'
 
+export interface IAddress {
+    number: number
+    street: string
+    zipCode: string
+    city: string
+    country: string
+}
+
 export interface IUser {
     _id: string
     avatar: string
@@ -16,6 +24,7 @@ export interface IUser {
     firstName: string
     lastName: string
     sex: SexType
+    address: IAddress
 }
 
 export interface IUserFunctions {
@@ -31,6 +40,7 @@ export class User implements IUser, IUserFunctions {
     firstName: string
     lastName: string
     sex: SexType
+    address: IAddress
 
     constructor(userData: IUser) {
         this._id = userData._id
@@ -40,6 +50,7 @@ export class User implements IUser, IUserFunctions {
         this.firstName = userData.firstName
         this.lastName = userData.lastName
         this.sex = userData.sex
+        this.address = { ...userData.address }
     }
 
     async checkMails(): Promise<MailListData[]> {
