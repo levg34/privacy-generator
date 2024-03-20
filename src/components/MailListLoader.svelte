@@ -2,7 +2,7 @@
   export let selectEmail: (id: number) => void
   export let selectedEmail: number | undefined
   import MailList from './MailList.svelte'
-  import { delay } from '../ts/test-utils'
+  import { delay } from '../ts/utils/test-utils'
   const mailList = delay(
     [
       {

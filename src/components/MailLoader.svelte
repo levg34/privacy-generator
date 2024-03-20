@@ -1,6 +1,6 @@
 <script lang="ts">
   import Mail from './Mail.svelte'
-  import { delay } from '../ts/test-utils'
+  import { delay } from '../ts/utils/test-utils'
 
   export let id: number
   // const mailContent = readUserMail({email: 'test@1secmail.org'}, id)

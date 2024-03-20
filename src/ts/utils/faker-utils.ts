@@ -1,6 +1,6 @@
 import { fakerFR as faker } from '@faker-js/faker'
 import { listAvailableProviders } from './api-utils'
-import type { User } from './user'
+import type { User } from '../user'
 
 export async function createRandomUser(): Promise<User> {
     const sex = faker.person.sexType()
