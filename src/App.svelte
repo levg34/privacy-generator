@@ -1,25 +1,23 @@
 <script lang="ts">
-// import { MailData } from './ts/api-utils.ts'
-import { readUserMail } from './ts/api-utils.ts'
-import MailLoader from './components/MailLoader.svelte'
-import MailListLoader from './components/MailListLoader.svelte'
+  import MailLoader from './components/MailLoader.svelte'
+  import MailListLoader from './components/MailListLoader.svelte'
 
-let selectedEmail
+  let selectedEmail: number | undefined
 
-function selectEmail(emailId) {
-  selectedEmail = emailId
-}
+  function selectEmail(emailId: number) {
+    selectedEmail = emailId
+  }
 </script>
 
 <main>
   <h1>Mailapp</h1>
-  <hr>
+  <hr />
   {#if selectedEmail !== undefined}
-  <MailLoader id={selectedEmail}/>
-  <hr>
+    <MailLoader id={selectedEmail} />
+    <hr />
   {/if}
-  <MailListLoader {selectEmail} {selectedEmail}/>
-  <hr>
+  <MailListLoader {selectEmail} {selectedEmail} />
+  <hr />
   <div>Selected email id = {selectedEmail}</div>
 </main>
 
@@ -29,7 +27,7 @@ function selectEmail(emailId) {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   h1 {

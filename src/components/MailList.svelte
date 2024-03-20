@@ -1,25 +1,34 @@
-<script>
-export let listData
-export let selectEmail
-export let selectedEmail
+<script lang="ts">
+  export let listData: MailListData[]
+  export let selectEmail: (id: number) => void
+  export let selectedEmail: number | undefined
 
-import { onMount } from 'svelte'
+  import { onMount } from 'svelte'
+  import { formatDate } from '../ts/format-utils'
+  import type { MailListData } from '../ts/api-utils'
 
-function formatDate(dateString) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-  return new Date(dateString).toLocaleDateString('fr-FR', options);
-}
-
-onMount(() => {
-  selectEmail(listData[0]?.id)
-})
+  onMount(() => {
+    selectEmail(listData[0]?.id)
+  })
 </script>
+
+<div>
+  {#each listData as email}
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div class="email" class:selected={selectedEmail === email.id} on:click={() => selectEmail(email.id)}>
+      <p><strong>De :</strong> {email.from}</p>
+      <p><strong>Sujet :</strong> {email.subject}</p>
+      <p><strong>Date :</strong> {formatDate(email.date)}</p>
+    </div>
+  {/each}
+</div>
 
 <style>
   .email {
     border: 1px solid #ccc;
     padding: 8px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
   }
 
   .selected {
@@ -28,13 +37,3 @@ onMount(() => {
     padding-left: 4px;
   }
 </style>
-
-<div>
-  {#each listData as email}
-    <div class="email" class:selected={selectedEmail === email.id} on:click={() => selectEmail(email.id)}>
-      <p><strong>De :</strong> {email.from}</p>
-      <p><strong>Sujet :</strong> {email.subject}</p>
-      <p><strong>Date :</strong> {formatDate(email.date)}</p>
-    </div>
-  {/each}
-</div>

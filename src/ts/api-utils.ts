@@ -19,6 +19,13 @@ export interface Attachment {
     size: number
 }
 
+export interface MailListData {
+    id: number
+    from: string
+    subject: string
+    date: string
+}
+
 let availableProvidersList: string[] = []
 
 export async function makeHttpRequest(url: string): Promise<any> {

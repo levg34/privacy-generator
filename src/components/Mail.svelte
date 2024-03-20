@@ -1,27 +1,9 @@
-<script lang='ts'>
-// import { MailData } from '../ts/api-utils.ts'
-export let mailData: MailData
-$: console.log('mailData', mailData)
+<script lang="ts">
+  import type { MailData } from '../ts/api-utils'
+  import { formatDate } from '../ts/format-utils'
 
-const formatDate = (date) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    return date.toLocaleDateString('fr-FR', options);
-  };
+  export let mailData: MailData
 </script>
-
-<style>
-  .mail-content {
-    border: 1px solid #ccc;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-  .attachment {
-    background: #f9f9f9;
-    border: 1px dashed #d3d3d3;
-    padding: 4px;
-    margin-top: 5px;
-  }
-</style>
 
 <div class="mail-content">
   <h2>{mailData.subject}</h2>
@@ -40,3 +22,17 @@ const formatDate = (date) => {
     {@html mailData.htmlBody}
   </div>
 </div>
+
+<style>
+  .mail-content {
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  .attachment {
+    background: #f9f9f9;
+    border: 1px dashed #d3d3d3;
+    padding: 4px;
+    margin-top: 5px;
+  }
+</style>
