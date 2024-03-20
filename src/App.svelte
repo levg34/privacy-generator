@@ -16,7 +16,7 @@
 </nav>
 
 <main>
-  <h1>Mailapp</h1>
+  <h1>Privacy generator</h1>
   <hr />
   {#if $currentPage === 'MailPage'}
     <MailPage />
