@@ -1,6 +1,4 @@
-type User = {
-    email: string
-}
+import type { User } from './user'
 
 export interface MailData {
     id: number

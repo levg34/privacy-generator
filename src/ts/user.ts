@@ -1,4 +1,4 @@
-import { SexType } from '@faker-js/faker'
+import type { SexType } from '@faker-js/faker'
 
 export interface User {
     _id: string
