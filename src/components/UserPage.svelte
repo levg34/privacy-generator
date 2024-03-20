@@ -12,4 +12,6 @@
   <p>Creating user...</p>
 {:then user}
   <User {user} />
+{:catch error}
+  <p style="color: red;">Erreur: {error}</p>
 {/await}
