@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { MailData } from '../ts/utils/api-utils'
-  import { formatDate } from '../ts/utils/format-utils'
+  import type { MailData } from '../../ts/utils/api-utils'
+  import { formatDate } from '../../ts/utils/format-utils'
 
   export let mailData: MailData
 </script>

@@ -1,24 +1,28 @@
 <script lang="ts">
-  import MailLoader from './components/MailLoader.svelte'
-  import MailListLoader from './components/MailListLoader.svelte'
+  import { writable } from 'svelte/store'
+  import MailPage from './components/MailPage.svelte'
+  import UserPage from './components/UserPage.svelte'
 
-  let selectedEmail: number | undefined
+  const currentPage = writable('UserPage')
 
-  function selectEmail(emailId: number) {
-    selectedEmail = emailId
+  function navigate(page: string) {
+    currentPage.set(page)
   }
 </script>
+
+<nav>
+  <button on:click={() => navigate('UserPage')}>User</button>
+  <button on:click={() => navigate('MailPage')}>Mail</button>
+</nav>
 
 <main>
   <h1>Mailapp</h1>
   <hr />
-  {#if selectedEmail !== undefined}
-    <MailLoader id={selectedEmail} />
-    <hr />
+  {#if $currentPage === 'MailPage'}
+    <MailPage />
+  {:else}
+    <UserPage />
   {/if}
-  <MailListLoader {selectEmail} {selectedEmail} />
-  <hr />
-  <div>Selected email id = {selectedEmail}</div>
 </main>
 
 <style>
@@ -47,5 +51,22 @@
     text-align: center;
     font-size: 0.9em;
     color: #666;
+  }
+
+  nav {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #e8e8e8;
   }
 </style>

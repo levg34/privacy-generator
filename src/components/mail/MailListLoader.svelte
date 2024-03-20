@@ -2,7 +2,7 @@
   export let selectEmail: (id: number) => void
   export let selectedEmail: number | undefined
   import MailList from './MailList.svelte'
-  import { delay } from '../ts/utils/test-utils'
+  import { delay } from '../../ts/utils/test-utils'
   const mailList = delay(
     [
       {
@@ -18,7 +18,7 @@
         date: '2018-06-08 14:40:55'
       }
     ],
-    1500
+    500
   )
 </script>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
   import Mail from './Mail.svelte'
-  import { delay } from '../ts/utils/test-utils'
+  import { delay } from '../../ts/utils/test-utils'
 
   export let id: number
   // const mailContent = readUserMail({email: 'test@1secmail.org'}, id)
@@ -36,7 +36,7 @@
             textBody: 'Ceci est un autre exemple de texte pour le mailExample2.',
             htmlBody: '<p>Ceci est un autre exemple de HTML pour le <strong>mailExample2</strong>.</p>'
           },
-          1500
+          500
         )
 </script>
 

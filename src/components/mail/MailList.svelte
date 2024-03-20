@@ -4,8 +4,8 @@
   export let selectedEmail: number | undefined
 
   import { onMount } from 'svelte'
-  import { formatDate } from '../ts/utils/format-utils'
-  import type { MailListData } from '../ts/utils/api-utils'
+  import { formatDate } from '../../ts/utils/format-utils'
+  import type { MailListData } from '../../ts/utils/api-utils'
 
   onMount(() => {
     selectEmail(listData[0]?.id)
