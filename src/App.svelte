@@ -46,13 +46,6 @@
     background-color: #ddd;
   }
 
-  div {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 0.9em;
-    color: #666;
-  }
-
   nav {
     text-align: center;
     margin-bottom: 20px;

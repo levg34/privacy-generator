@@ -1,6 +1,6 @@
 <script lang="ts">
-  import MailLoader from './mail/MailLoader.svelte'
-  import MailListLoader from './mail/MailListLoader.svelte'
+  import MailLoader from './mail/loader/MailLoader.svelte'
+  import MailListLoader from './mail/loader/MailListLoader.svelte'
 
   let selectedEmail: number | undefined
 
@@ -16,3 +16,12 @@
 <MailListLoader {selectEmail} {selectedEmail} />
 <hr />
 <div>Selected email id = {selectedEmail}</div>
+
+<style>
+  div {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+  }
+</style>
