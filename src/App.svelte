@@ -26,10 +26,10 @@
   {#await userPromise}
     <p>Creating user...</p>
   {:then user}
-    <UserPage {user} />
     {#if $currentPage === 'MailPage'}
-      <hr />
       <MailPage {user} />
+    {:else}
+      <UserPage {user} />
     {/if}
   {:catch error}
     <p style="color: red;">Erreur: {error}</p>

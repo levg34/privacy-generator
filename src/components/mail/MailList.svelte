@@ -24,7 +24,7 @@
       </div>
     {/each}
   {:else}
-    <p style="color: aqua;">No emails found.</p>
+    <p style="color: cornflowerblue;">No emails found.</p>
   {/if}
 </div>
 
