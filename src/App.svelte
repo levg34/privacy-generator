@@ -1,13 +1,18 @@
 <script lang="ts">
   import { writable } from 'svelte/store'
   import MailPage from './components/MailPage.svelte'
-  import UserPage from './components/UserPage.svelte'
+  import { UserFactory } from './ts/user'
+  import UserPage from './components/user/User.svelte'
 
   const currentPage = writable('UserPage')
 
   function navigate(page: string) {
     currentPage.set(page)
   }
+
+  const userPromise = UserFactory.init().then((factory) => {
+    return factory.createUser()
+  })
 </script>
 
 <nav>
@@ -18,11 +23,17 @@
 <main>
   <h1>Privacy generator</h1>
   <hr />
-  {#if $currentPage === 'MailPage'}
-    <MailPage />
-  {:else}
-    <UserPage />
-  {/if}
+  {#await userPromise}
+    <p>Creating user...</p>
+  {:then user}
+    <UserPage {user} />
+    {#if $currentPage === 'MailPage'}
+      <hr />
+      <MailPage {user} />
+    {/if}
+  {:catch error}
+    <p style="color: red;">Erreur: {error}</p>
+  {/await}
 </main>
 
 <style>

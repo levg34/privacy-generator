@@ -13,15 +13,19 @@
 </script>
 
 <div>
-  {#each listData as email}
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="email" class:selected={selectedEmail === email.id} on:click={() => selectEmail(email.id)}>
-      <p><strong>De :</strong> {email.from}</p>
-      <p><strong>Sujet :</strong> {email.subject}</p>
-      <p><strong>Date :</strong> {formatDate(email.date)}</p>
-    </div>
-  {/each}
+  {#if listData.length}
+    {#each listData as email}
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div class="email" class:selected={selectedEmail === email.id} on:click={() => selectEmail(email.id)}>
+        <p><strong>De :</strong> {email.from}</p>
+        <p><strong>Sujet :</strong> {email.subject}</p>
+        <p><strong>Date :</strong> {formatDate(email.date)}</p>
+      </div>
+    {/each}
+  {:else}
+    <p style="color: aqua;">No emails found.</p>
+  {/if}
 </div>
 
 <style>

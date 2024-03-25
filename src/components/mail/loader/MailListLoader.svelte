@@ -1,25 +1,11 @@
 <script lang="ts">
+  import { checkUserMails } from '../../../ts/utils/api-utils'
   export let selectEmail: (id: number) => void
   export let selectedEmail: number | undefined
+  export let email: string
   import MailList from '../MailList.svelte'
-  import { delay } from '../../../ts/utils/test-utils'
-  const mailList = delay(
-    [
-      {
-        id: 639,
-        from: 'someone@example.com',
-        subject: 'Some subject',
-        date: '2018-06-08 14:33:55'
-      },
-      {
-        id: 640,
-        from: 'someoneelse@example.com',
-        subject: 'Other subject',
-        date: '2018-06-08 14:40:55'
-      }
-    ],
-    500
-  )
+
+  const mailList = checkUserMails({ email })
 </script>
 
 {#await mailList}

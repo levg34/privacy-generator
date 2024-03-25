@@ -46,12 +46,14 @@ export async function listAvailableProviders() {
     return availableProvidersList
 }
 
-export async function checkUserMails(user: Partial<IUser> & Pick<IUser, 'email'>): Promise<MailListData[]> {
+type UserWithEmail = Partial<IUser> & Pick<IUser, 'email'>
+
+export async function checkUserMails(user: UserWithEmail): Promise<MailListData[]> {
     const [login, domain] = user.email.split('@')
     return await checkMails(login, domain)
 }
 
-export async function readUserMail(user: IUser, messageId: number): Promise<MailData> {
+export async function readUserMail(user: UserWithEmail, messageId: number): Promise<MailData> {
     const [login, domain] = user.email.split('@')
     return await apiRequest(`?action=readMessage&login=${login}&domain=${domain}&id=${messageId}`)
 }
