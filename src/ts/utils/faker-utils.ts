@@ -9,7 +9,7 @@ export function createRandomUser(availableProvidersList?: string[]): IUser {
         firstName,
         lastName,
         provider: availableProvidersList ? faker.helpers.arrayElement(availableProvidersList) : undefined
-    })
+    }).toLowerCase()
     const address: IAddress = {
         street: faker.location.street(),
         zipCode: faker.location.zipCode(),
